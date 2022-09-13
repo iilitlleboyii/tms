@@ -1,0 +1,33 @@
+<!--pages/search/search.wxml-->
+
+<van-popup show="{{ show }}" round position="bottom" custom-style="height: 30%;" bind:close="onClose">
+    <van-picker show-toolbar title="交通工具" bind:cancel="onCancel" bind:confirm="onConfirm" columns="{{ columns }}" />
+</van-popup>
+
+<van-dialog use-slot title="请添加路线点" show="{{ add }}" show-cancel-button  bind:close="onClose_dialog" bind:confirm="onConfirm_dialog">
+    <van-cell-group>
+        <van-field clearable label="景点名称" value="{{ item.text }}" placeholder="请输入景点名称" border="{{ false }}" bind:change="get_item_name"/>
+        <van-field clearable label="所乘交通工具" value="{{ item.desc }}" placeholder="请输入交通工具" border="{{ false }}" bind:change="get_item_trans"/>
+    </van-cell-group>
+</van-dialog>
+
+<van-cell-group>
+    <van-field clearable label="景区ID" model:value="{{ ss_id }}" placeholder="请输入景区ID" border="{{ false }}" />
+    <van-field clearable label="景区名称" model:value="{{ ss_name }}" placeholder="请输入景区名称" border="{{ false }}" />
+    <van-field clearable label="门票价格￥" model:value="{{ ss_price }}" placeholder="请输入门票价格" border="{{ false }}" />
+    <van-cell title="乘坐交通工具" is-link value="{{ ss_trans }}" arrow-direction="down" center bind:click="OnChangeTrans" />
+    <van-field clearable model:value="{{ accommodation }}" label="宿食安排" type="textarea" placeholder="请输入宿食安排" autosize border="{{ false }}" />
+    <van-field clearable model:value="{{ remark }}" label="备注事项" type="textarea" placeholder="请输入备注" autosize border="{{ false }}" />
+    <van-field readonly use-button-slot label="景区游览路线" placeholder="" border="{{ false }}">
+        <van-button slot="button" size="small" type="primary" bind:click="Additem">
+            添加路线
+        </van-button>
+        <van-button slot="button" size="small" type="danger" bind:click="Deleteitem">
+            删除路线
+        </van-button>
+    </van-field>
+</van-cell-group>
+
+<van-steps steps="{{ steps }}" active="{{ active }}" direction="vertical" active-color="#ee0a24" inactive-color="#ee0a24"/>
+
+<view class="btn_view"><button class="post_btn" type="primary" bindtap="post_str">提交</button></view>

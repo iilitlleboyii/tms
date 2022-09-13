@@ -1,0 +1,85 @@
+/* pages/order/comment/comment.wxss */
+page {
+    background-color: rgb(239, 239, 239);
+}
+.comment-scenic{
+    height: 50px;
+    position: relative;
+    background-color: white;
+}
+.order_ticket_item-image{
+    position: absolute;
+    height: 50px;
+    width: 70px;
+    left: 120px; 
+}
+.order_ticket_item-text{
+    position: absolute;
+    left: 200px;
+    bottom: 12px;
+    font-size: 24px;
+    font-weight: bolder;
+}
+.comment-mark{
+    margin: 20px 0 20px 0;
+    background-color: white;
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    padding: 15px 0 15px 0;
+}
+.mark-text{
+    margin-right: 8px;
+}
+.comment-content{
+    background-color: white;
+    /* height: 200px; */
+}
+.comment-image{
+    margin: 20px 0 20px 0;
+    background-color: white;
+    position: relative;
+    padding: 15px;
+    height: 150px;
+}
+.add-image{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    right: 70px;
+    top: 0px;
+}
+.delete-image{
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    right: 10px;
+    top: 8px;
+}
+.image-items{
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+.image-item{
+    margin-right: 5px;
+    height: 90px;
+    width: 120px;
+}
+.save-comment-btn{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    width: 120px;
+    height: 40px;
+    background-color: green;
+    font-size: 14px;
+}
+.post-comment-btn{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    width: 120px;
+    height: 40px;
+    background-color: green;
+}

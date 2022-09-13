@@ -1,0 +1,29 @@
+<!--pages/register/register.wxml-->
+<van-cell-group>
+  <van-field
+    clearable
+    label="用户名"
+    placeholder="请输入用户名"
+    bind:input="getUserName"
+  />
+
+  <van-field
+    clearable
+    label="手机号"
+    placeholder="请输入手机号"
+    maxlength="11"
+    border="{{ false }}"
+    bind:input="getUserAccount"
+  />
+
+  <van-field
+    clearable
+    type="password"
+    label="密码"
+    placeholder="请输入密码"
+    border="{{ false }}"
+    bind:input="getUserPassword"
+  />
+</van-cell-group>
+
+<view class="btn_view"><button class="register_btn" type="primary" bindtap="register">注册</button></view>

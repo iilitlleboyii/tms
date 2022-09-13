@@ -1,0 +1,115 @@
+<!--pages/order/order.wxml-->
+<van-tabs active="{{ active }}" animated sticky>
+    <van-tab title="购物车">
+        <scroll-view>
+            <view class="shop_cart" wx:for="{{shop_cart}}" wx:for-index="index">
+                <view class="{{selected[index] ? 'selector':''}}"></view>
+                <image class="shop_cart_ticket-image" src="{{shop_cart[index].imageURL}}" bindtap="select" data-index="{{index}}"></image>
+                <view class="shop_cart_ticket-name">{{shop_cart[index].ticket_name}}</view>
+                <view class="shop_cart_ticket-id">ID:{{shop_cart[index].ticket_id}}</view>
+                <view class="shop_cart_ticket-price">￥{{shop_cart[index].ticket_price}}</view>
+                <van-stepper class="shop_cart_ticket-stepper" value="{{ shop_cart[index].ticket_num }}" integer min="1" max="99" long-press="{{ true }}" async-change bind:change="onChange_ticket_num" data-index="{{index}}" />
+                <!-- <van-button class="shop_cart_ticket-buy-btn" type="default" round size="mini" color="red" bind:click="buy" data-index="{{index}}">购票</van-button>
+                <van-button class="shop_cart_ticket-collect-btn" type="default" round size="mini" color="red" bind:click="OnCollect" data-index="{{index}}" bind:click="cancel_add_shop">移除</van-button> -->
+            </view>
+        </scroll-view>
+        <view class="hold-view"></view>
+        <view class="selector-management">
+            <view class="{{all_selected ? 'all_selector':''}}"></view>
+            <text class="all_selector_tittle" bindtap="all_select" decode="{undefined{true}}">全选&nbsp;&nbsp;合计:</text>
+            <text class="selector_total_price">￥{{selector_total_price}}</text>
+            <button class="all_selector-delete" bindtap="delete_all">移除</button>
+            <button class="all_selector-buy" bindtap="buy_all">购票</button>
+        </view>
+    </van-tab>
+
+    <van-tab title="待付款">
+        <view class="unpaid-list" wx:for="{{unpaid_list}}" wx:for-index="index1" wx:for-item="order_item">
+            <view class="unpaid-list_order_id">
+                <text>订单号:{{unpaid_list[index1].order_id}}</text>
+                <text class="more" bindtap="onchange_unpaidshow" data-index="{{index1}}">••••查看详情</text>
+            </view>
+            <view wx:if="{{unpaid_show_list[index1]}}">
+                <view wx:for="{{order_item.ticket_items}}" wx:for-index="index2">
+                    <view class="unpaid-list_ticket-card">
+                        <image class="unpaid-list_ticket-image" src="{{order_item.ticket_items[index2].imageURL}}"></image>
+                        <view class="unpaid-list_ticket-name">{{order_item.ticket_items[index2].ticket_name}}</view>
+                        <view class="unpaid-list_ticket-id">ID:{{order_item.ticket_items[index2].ticket_id}}</view>
+                        <view class="unpaid-list_ticket-price">￥{{order_item.ticket_items[index2].ticket_price}}</view>
+                        <view class="unpaid-list_ticket-num">数量×{{order_item.ticket_items[index2].ticket_num}}</view>
+                    </view>
+                </view>
+                <van-cell title="服务" value="未选保障服务" />
+                <view class="cashier">
+                    <van-cell title="商品金额" value="￥{{order_item.total_price}}" border="{{false}}" />
+                    <van-cell title="优惠券" value="暂无可使用优惠券" border="{{false}}" />
+                    <van-cell title="支付方式" value="在线支付" border="{{false}}" />
+                    <van-cell title="发票" value="电子(商品明细-个人)" />
+                </view>
+            </view>
+
+            <view wx:else="{{unpaid_show_list[index1]}}">
+                <view class="unpaid-list_ticket-card">
+                    <image class="unpaid-list_ticket-image" src="{{order_item.ticket_items[0].imageURL}}"></image>
+                    <view class="unpaid-list_ticket-name">{{order_item.ticket_items[0].ticket_name}}</view>
+                    <view class="unpaid-list_ticket-id">ID:{{order_item.ticket_items[0].ticket_id}}</view>
+                    <view class="unpaid-list_ticket-price">￥{{order_item.ticket_items[0].ticket_price}}</view>
+                    <view class="unpaid-list_ticket-num">数量×{{order_item.ticket_items[0].ticket_num}}</view>
+                </view>
+                <view class="unpaid-list_items_num">------共{{order_item.ticket_items.length}}个项目------</view>
+            </view>
+
+            <view class="unpaid-list_price">
+                <text>待支付金额:</text>
+                <text class="unpaid-list_total-price">￥{{order_item.total_price}}</text>
+                <button class="cancel_order_btn" bindtap="cancel_order" data-index="{{index1}}">取消订单</button>
+                <button class="pay_btn" bindtap="pay_order" data-index="{{index1}}">去付款</button>
+            </view>
+        </view>
+    </van-tab>
+
+
+    <van-tab title="已付款">
+        <view class="paid-list" wx:for="{{paid_list}}" wx:for-index="index1" wx:for-item="order_item">
+            <view class="paid-list_order_id">
+                <text>订单号:{{paid_list[index1].order_id}}</text>
+                <text class="more" bindtap="onchange_paidshow" data-index="{{index1}}">••••查看详情</text>
+            </view>
+            <view wx:if="{{paid_show_list[index1]}}">
+                <view wx:for="{{order_item.ticket_items}}" wx:for-index="index2">
+                    <view class="paid-list_ticket-card">
+                        <image class="paid-list_ticket-image" src="{{order_item.ticket_items[index2].imageURL}}"></image>
+                        <view class="paid-list_ticket-name">{{order_item.ticket_items[index2].ticket_name}}</view>
+                        <view class="paid-list_ticket-id">ID:{{order_item.ticket_items[index2].ticket_id}}</view>
+                        <view class="paid-list_ticket-price">￥{{order_item.ticket_items[index2].ticket_price}}</view>
+                        <view class="paid-list_ticket-num">数量×{{order_item.ticket_items[index2].ticket_num}}</view>
+                    </view>
+                </view>
+                <van-cell title="服务" value="未选保障服务" />
+                <view class="cashier">
+                    <van-cell title="商品金额" value="￥{{order_item.total_price}}" border="{{false}}" />
+                    <van-cell title="优惠券" value="暂无可使用优惠券" border="{{false}}" />
+                    <van-cell title="支付方式" value="在线支付" border="{{false}}" />
+                    <van-cell title="发票" value="电子(商品明细-个人)" />
+                </view>
+            </view>
+
+            <view wx:else="{{paid_show_list[index1]}}">
+                <view class="paid-list_ticket-card">
+                    <image class="paid-list_ticket-image" src="{{order_item.ticket_items[0].imageURL}}"></image>
+                    <view class="paid-list_ticket-name">{{order_item.ticket_items[0].ticket_name}}</view>
+                    <view class="paid-list_ticket-id">ID:{{order_item.ticket_items[0].ticket_id}}</view>
+                    <view class="paid-list_ticket-price">￥{{order_item.ticket_items[0].ticket_price}}</view>
+                    <view class="paid-list_ticket-num">数量×{{order_item.ticket_items[0].ticket_num}}</view>
+                </view>
+                <view class="paid-list_items_num">------共{{order_item.ticket_items.length}}个项目------</view>
+            </view>
+
+            <view class="paid-list_price">
+                <text>已支付金额:</text>
+                <text class="paid-list_total-price">￥{{order_item.total_price}}</text>
+                <button class="comment-btn" bindtap="comment" data-index="{{index1}}">去评价</button>
+            </view>
+        </view>
+    </van-tab>
+</van-tabs>

@@ -1,0 +1,108 @@
+/* pages/home/home.wxss */
+.location_search_view {
+    position: relative;
+}
+
+.search-view {
+    position: absolute;
+    width: 80%;
+    left: 140rpx;
+}
+
+.location-view {
+    position: absolute;
+    top: 4px;
+}
+
+.notice_bar {
+    position: relative;
+    top: 42px;
+}
+
+.swiper-body {
+    position: relative;
+    top: 34px;
+    height: 350rpx;
+    width: 96%;
+    padding: 2%;
+    border-radius: 42rpx;
+    overflow: hidden;
+}
+
+.swiper-item-images {
+    width: 100%;
+    height: 350rpx;
+    border-radius: 42rpx;
+}
+
+.grid{
+    position: relative;
+    top: 30px;
+}
+
+.ticket-card {
+    display: flex;
+    height: 150px;
+    width: 100%;
+    padding: 20rpx;
+    /* border-bottom: gainsboro solid 2px; */
+    position: relative;
+    top: 26px;
+}
+
+.ticket-image {
+    height: 150px;
+    width: 200px;
+}
+
+.ticket-name {
+    position: absolute;
+    left: 220px;
+    width: 40%;
+    /*内容超出后隐藏*/
+    overflow: hidden;
+    /* 超出内容显示为省略号*/
+    text-overflow: ellipsis;
+    /*文本不进行换行*/
+    white-space: nowrap;
+}
+
+.ticket-id {
+    position: absolute;
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.ticket-stepper {
+    position: absolute;
+    right: 30px;
+    bottom: 60px;
+}
+
+.like_icon {
+    position: absolute;
+    left: 290px;
+    top: 138px;
+}
+
+.ticket-buy-btn {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+}
+
+.ticket-collect-btn {
+    position: absolute;
+    right: 72px;
+    bottom: 10px;
+}
+
+.ticket-price {
+    position: absolute;
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+    left: 215px;
+    bottom: 10px;
+}

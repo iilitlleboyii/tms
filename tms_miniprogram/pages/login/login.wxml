@@ -1,0 +1,26 @@
+<!--pages/login/login.wxml-->
+
+<image class="login_img" src="cloud://tms-6g5jr3dg7070b741.746d-tms-6g5jr3dg7070b741-1309987156/images/login.jpg" mode="widthFix"></image>
+
+<van-cell-group>
+  <van-field
+    clearable
+    label="账号"
+    placeholder="请输入账号"
+    maxlength="11"
+    border="{{ false }}"
+    bind:input="getInputAccount"
+  />
+
+  <van-field
+    clearable
+    type="password"
+    label="密码"
+    placeholder="请输入密码"
+    border="{{ false }}"
+    bind:input="getInputPassword"
+  />
+</van-cell-group>
+<view class="btn_view"><button class="login_btn" type="primary" bindtap="login">登录</button></view>
+
+<text class="login-register" bindtap="login_register">注册</text>

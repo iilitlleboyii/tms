@@ -1,0 +1,56 @@
+<!--pages/home/home.wxml-->
+<view class="location_search_view">
+    <view class="location-view">
+        <van-icon name="location-o" size="40rpx" />
+        <text bindtap="showPopup">{{temp_area.city}}</text>
+    </view>
+    <view class="search-view">
+        <van-search value="{{ search_value }}" placeholder="请输入搜索关键词" use-action-slot bind:change="onChange" bind:search="onSearch">
+            <view slot="action" bind:tap="onClick" data-detail="{{search_value}}">搜索</view>
+        </van-search>
+    </view>
+</view>
+<view class="notice_bar">
+    <van-notice-bar left-icon="volume-o" scrollable text="技术是开发它的人的共同灵魂。" />
+</view>
+
+<van-popup show="{{ show }}" round position="bottom" custom-style="height: 30%;" bind:close="onClose">
+    <van-area area-list="{{ areaList }}" columns-num="{{ 3 }}" title="请选择地点" bind:confirm="area_confirm" />
+</van-popup>
+
+<view class="swiper-container">
+    <swiper class="swiper-body" indicator-dots="{ture}" easing-function="easeInOutCubic" vertical="{{false}}" autoplay="ture" interval="5000" duration="500">
+        <swiper-item>
+            <image src="cloud://tms-6g5jr3dg7070b741.746d-tms-6g5jr3dg7070b741-1309987156/images/swiper.jpg" class="swiper-item-images"></image>
+        </swiper-item>
+        <swiper-item>
+            <image src="cloud://tms-6g5jr3dg7070b741.746d-tms-6g5jr3dg7070b741-1309987156/images/swiper.jpg" class="swiper-item-images"></image>
+        </swiper-item>
+        <swiper-item>
+            <image src="cloud://tms-6g5jr3dg7070b741.746d-tms-6g5jr3dg7070b741-1309987156/images/swiper.jpg" class="swiper-item-images"></image>
+        </swiper-item>
+        <swiper-item>
+            <image src="cloud://tms-6g5jr3dg7070b741.746d-tms-6g5jr3dg7070b741-1309987156/images/swiper.jpg" class="swiper-item-images"></image>
+        </swiper-item>
+        <swiper-item>
+            <image src="cloud://tms-6g5jr3dg7070b741.746d-tms-6g5jr3dg7070b741-1309987156/images/swiper.jpg" class="swiper-item-images"></image>
+        </swiper-item>
+    </swiper>
+</view>
+
+<view class="grid">
+    <van-grid clickable column-num="2">
+        <van-grid-item icon="home-o" link-type="navigateTo" url="" text="更多活动" />
+        <van-grid-item icon="search" link-type="navigateTo" url="" text="攻略搜索" />
+    </van-grid>
+</view>
+
+<view class="ticket-card" wx:for="{{ticket_items}}" wx:for-index="index">
+    <image class="ticket-image" src="{{ticket_items[index].imageURL}}" bindtap="show_scenic_info" data-index="{{index}}"></image>
+    <view class="ticket-name">{{ticket_items[index].ticket_name}}</view>
+    <view class="ticket-id">ID:{{ticket_items[index].ticket_id}}</view>
+    <view class="ticket-price">￥{{ticket_items[index].ticket_price}}</view>
+    <van-stepper class="ticket-stepper" value="{{ ticket_items[index].ticket_num }}" integer min="1" max="99" long-press="{{ true }}" async-change bind:change="onChange_ticket_num" data-index="{{index}}" />
+    <van-button class="ticket-buy-btn" type="default" round size="mini" color="red" bindtap="buy" data-index="{{index}}">购票</van-button>
+    <van-button class="ticket-collect-btn" type="default" round size="mini" color="red" bind:click="Add_Purchase" data-index="{{index}}">加购</van-button>
+</view>

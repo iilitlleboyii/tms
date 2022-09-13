@@ -1,0 +1,39 @@
+<!--pages/myself/acc_info/acc_info.wxml-->
+<van-cell-group>
+  <van-field
+    model:value="{{ name }}"
+    label="用户名"
+    border="{{ false }}"
+    bind:input="set_Name"
+  />
+
+  <van-field
+    model:value="{{ account }}"
+    label="账号"
+    disabled
+    border="{{ false }}"
+  />
+
+  <van-field
+    model:value="{{ age }}"
+    label="年龄"
+    border="{{ false }}"
+    bind:input="set_Age"
+  />
+
+  <van-field
+    model:value="{{ gender }}"
+    label="性别"
+    border="{{ false }}"
+    bind:input="set_Gender"
+  />
+
+  <van-field
+    model:value="{{ address }}"
+    label="地址"
+    border="{{ false }}"
+    bind:input="set_Address"
+  />
+</van-cell-group>
+
+<view class="btn_view"><button class="save_btn" type="primary" bindtap="save">保存</button></view>

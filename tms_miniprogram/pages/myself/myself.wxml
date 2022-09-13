@@ -1,0 +1,23 @@
+<!--pages/myself/myself.wxml-->
+<image class="headimg" src="cloud://tms-6g5jr3dg7070b741.746d-tms-6g5jr3dg7070b741-1309987156/images/headimg.png" mode="widthFix"></image>
+<text class="user_name">{{ name }}</text>
+<view class="account-info">
+    <van-cell is-link title="个人信息" link-type="navigateTo" url="./acc_info/acc_info" border="{{false}}"/>
+</view>
+
+<view class="block-my">
+    <van-collapse value="{{ activeNames }}" bind:change="onChange" border="{{false}}">
+        <van-collapse-item title="我的收藏" name="1" >
+            <view class="collect-items" wx:for="{{collect_list}}" wx:for-index="index">
+                <image class="collect-item_img" src="{{collect_list[index].scenic_imageURL}}"></image>
+                <text class="collect-item_text">{{collect_list[index].scenic_name}}</text>
+            </view>
+        </van-collapse-item>
+        <van-collapse-item title="我的攻略" name="2">
+            代码是写出来给人看的，附带能在机器上运行
+        </van-collapse-item>
+        <van-collapse-item title="我的评价" name="3">
+            代码是写出来给人看的，附带能在机器上运行
+        </van-collapse-item>
+    </van-collapse>
+</view>

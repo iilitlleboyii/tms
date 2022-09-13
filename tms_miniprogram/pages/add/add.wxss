@@ -1,0 +1,13 @@
+/* pages/search/search.wxss */
+.btn_view{
+    position: absolute;
+    width: 100%;
+    bottom: 2%;
+}
+.post_btn{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    width: 120px;
+    height: 40px;
+}

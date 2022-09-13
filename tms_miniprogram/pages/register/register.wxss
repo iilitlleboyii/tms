@@ -1,0 +1,11 @@
+/* pages/register/register.wxss */
+.btn_view{
+    padding-top: 20px;
+}
+.register_btn{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    width: 120px;
+    height: 40px;
+}

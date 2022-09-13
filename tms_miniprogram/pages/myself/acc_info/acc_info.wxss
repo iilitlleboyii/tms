@@ -1,0 +1,11 @@
+/* pages/myself/acc_info/acc_info.wxss */
+.btn_view{
+    padding-top: 25px;
+}
+.save_btn {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    width: 120px;
+    height: 40px;
+}

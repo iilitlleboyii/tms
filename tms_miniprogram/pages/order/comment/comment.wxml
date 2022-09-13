@@ -1,0 +1,48 @@
+<!--pages/order/comment/comment.wxml-->
+<wxs module="filters">
+    var toFixed = function (value) {
+        return value.toFixed(2);
+    }
+    module.exports = {
+        toFixed: toFixed
+    }
+</wxs>
+
+<view class="comment-scenic">
+    <image class="order_ticket_item-image" src="{{comment_item.imageURL}}"></image>
+    <text class="order_ticket_item-text">{{comment_item.ticket_name}}</text>
+</view>
+<view class="comment-mark">
+    <view class="total-mark" style="font-size: 20px;">总评分：{{filters.toFixed(comment_item.total_value)}}分</view>
+    <view style="color: green;margin-bottom: 10px;margin-top: 10px;">请评分</view>
+    <view class="mark-item">
+        <text class="mark-text">交通评分</text>
+        <van-rate value="{{ comment_item.trans_value }}" bind:change="change_trans" size="25px" allow-half touchable />
+    </view>
+    <view class="mark-item">
+        <text class="mark-text">服务评分</text>
+        <van-rate value="{{ comment_item.service_value }}" bind:change="change_service" size="25px" allow-half touchable />
+    </view>
+    <view class="mark-item">
+        <text class="mark-text">景象评分</text>
+        <van-rate value="{{ comment_item.scene_value }}" bind:change="change_scene" size="25px" allow-half touchable />
+    </view>
+</view>
+
+<view class="comment-content">
+    <van-field value="{{ comment_item.message }}" label="评价理由：" type="textarea" placeholder="请输入留言" autosize border="{{ false }}" show-word-limit title-width="5em" show-word-limit="{{true}}" maxlength="500" bind:input="get_message" />
+</view>
+
+<view class="comment-image">
+    <text>添加图片：</text>
+    <view class="image-items">
+        <view wx:for="{{comment_item.image_list}}" wx:for-index="index">
+            <image class="image-item" src="{{comment_item.image_list[index]}}" bindtap="priview" data-index="{{index}}"></image>
+        </view>
+    </view>
+    <image class="add-image" src="../../images/addphoto.png" bindtap="add_image"></image>
+    <image class="delete-image" src="../../images/deletephoto.png" bindtap="delete_image"></image>
+</view>
+
+<button class="save-comment-btn" type="primary" bindtap="save">保存并下一页</button>
+<!-- <button class="post-comment-btn" type="primary" bindtap="post_comment">提交评价</button> -->

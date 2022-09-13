@@ -1,0 +1,26 @@
+/* pages/login/login.wxss */
+.btn_view{
+    padding-top: 25px;
+}
+.login_btn {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    width: 120px;
+    height: 40px;
+}
+
+.login-register {
+    color: green;
+    position: relative;
+    bottom: 30px;
+    left: 30px;
+}
+
+.login_img {
+    height: 100px;
+    width: 30%;
+    padding: 100px;
+    padding-left: 35%;
+    border-radius: 50%;
+}

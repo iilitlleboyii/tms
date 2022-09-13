@@ -1,0 +1,26 @@
+<!--pages/home/scenic/scenic.wxml-->
+<view>
+    <image class="scenic-img" src="{{scenic_item.scenic_imageURL}}"></image>
+</view>
+<view class="scenic_name"><text>{{scenic_item.scenic_name}}</text></view>
+<view class="scenic_info"><text>简介:{{scenic_item.scenic_info}}</text></view>
+<view class="info-table">
+    <text class="table-cell1" style="font-size: 16px;width: 50%;">官方网站：</text>
+    <text class="table-cell2" style="font-size: 16px;width: 50%;">门票参考：</text>
+    <text class="table-cell3" style="font-size: 16px;width: 50%;">开放时间：</text>
+    <text class="table-cell4" style="font-size: 16px;width: 50%;">适宜季节：</text>
+    <text class="table-cell5" style="font-size: 16px;width: 50%;">旅游景区级别：</text>
+    <text class="table-cell6" style="font-size: 16px;width: 50%;">所属地/隶属：</text>
+</view>
+<view class="scenic-container">包含景点：</view>
+<view class="btn-view">
+    <view class="like-btn" wx:if="{{like}}">
+        <van-icon name="like" size="40px" bind:click="change_like" />
+    </view>
+    <view class="like-btn" wx:else="{{like}}">
+        <van-icon name="like-o" size="40px" bind:click="change_like" />
+    </view>
+    <view class="comment-btn">
+        <van-icon name="chat-o" size="40px" />
+    </view>
+</view>
